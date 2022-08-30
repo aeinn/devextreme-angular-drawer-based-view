@@ -1,0 +1,74 @@
+<dx-toolbar class="header-toolbar" #navToolbar>
+    <dxi-item *ngIf="userName"
+        id="drawerButton" 
+        location="before"
+        widget="dxButton"
+        locateInMenu="never"
+        [options]="sideNavButtonOptions">
+    </dxi-item>
+    <dxi-item
+        id="headerTitle" 
+        text="{{title}}"
+        location="before"
+        cssClass="menuText"
+        locateInMenu="never">
+    </dxi-item>
+
+    <dxi-item *ngIf="userName"
+        id="userName" 
+        text="{{userName}}"
+        location="after"
+        locateInMenu="{{dynamicLocateInMenu}}">
+    </dxi-item>
+    <dxi-item
+        id="label" 
+        text="Themes:"
+        location="after"
+        locateInMenu="always">
+    </dxi-item>
+    <dxi-item
+        id="themes" 
+        widget="dxSelectBox"
+        location="after"
+        locateInMenu="always"
+        [options]="themesOptions">
+    </dxi-item>
+</dx-toolbar>
+
+<dx-drawer
+    shading="true"
+    class="dxDrawerWrapper"
+    openedStateMode="overlap"
+    position="left"
+    revealMode="slide"
+    template="template"
+    [(opened)]="isDrawerOpen"
+    [closeOnOutsideClick]="true">
+
+    <div *dxTemplate="let data of 'template'" class="sideNav dx-theme-background-color">
+        <!--alt + h keypress consider press the Home button-->
+        <dx-button
+            accesskey="h"
+            text="home"
+            icon="home"
+            width="100%"
+            (onClick)="goHome()"
+        ></dx-button>
+        <dx-tree-view
+            #sideNav
+            [searchEnabled]="true"
+            searchMode="contains"
+            [searchEditorOptions]="searchEditorOptions"
+            id="nav-treeview"
+            [items]="navItems"
+            dataStructure="plain"
+            parentIdExpr="parentId"
+            keyExpr="id"
+            displayExpr="name"
+            (onItemClick)="selectItem($event)">
+        </dx-tree-view>
+    </div>
+
+    <br>
+    <router-outlet></router-outlet>
+</dx-drawer>

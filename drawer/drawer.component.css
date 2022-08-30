@@ -1,0 +1,46 @@
+/* alter text color of the toolbar */
+/* .menuText{
+    font-size: larger;
+    color: white
+} */
+
+/* alter toolbar height */
+/* css class REFERENCE POINTER: https://supportcenter.devexpress.com/ticket/details/t1065698/toolbar-what-is-recommended-way-to-change-height */
+/* a reminder: toolbar height prefer static sizing */
+/* .header-toolbar .dx-toolbar-items-container {
+    height: 64px;
+    background-color: #3f51b5;
+    color: white
+}  */
+.header-toolbar{
+    width: 100%;
+    /* box-shadow: 0 0 10px rgb(0 0 0 / 7%) */
+}
+
+.sideNav .dx-treeview{
+  /* this makes the side nav item bolder */
+  font-size:17.5px;
+}
+
+.dxDrawerWrapper{
+    /* 
+        36px is the default height of the header toolbar
+        5px is the top-margin to the header toolbar 
+        default width is already 100%
+    */
+    margin-top: 2px;
+    height: calc(100vh - 36px - 5px);
+    width:100%;
+}
+
+/* this makes the overflow content of drawer to be accesible through scrolling */
+/* css class REFERENCE POINTER: manually dug through element inspection*/
+.dxDrawerWrapper .dx-drawer-wrapper .dx-drawer-content{
+    /* this also controls the color pallete for the background of the whole document */
+    background-color: rgb(122,122,122,0.3);
+    overflow-y:scroll
+}
+
+.sideNav{
+    width: 300px !important;
+}
